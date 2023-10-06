@@ -26,8 +26,8 @@ $language = (empty($language))? "en" : $language;
 $unitNum = $_GET["unitNbr"]; // 3331776
 
 // Full URI for API endpoint
-$url = "https://www.familysearch.org/$language/wiki/api.php" .
-	   "?format=json&action=query&pageids=" . FHC_MASTER_LIST . "&prop=revisions&rvprop=content";
+$url = "https://{$_SERVER['HTTP_HOST']}/wiki/$language/api.php" .
+	"?format=json&action=query&pageids=" . FHC_MASTER_LIST . "&prop=revisions&rvprop=content";
 
 // We requested json because it's easier to work with
 $json = file_get_contents( $url );
@@ -47,7 +47,7 @@ foreach ( $ary as $k => $v ) {
 	$v = explode( '|', $v );
 	// find the key we're looking for
 	if ( in_array ( "#$unitNum", $v ) ) {
-		$ret = htmlspecialchars($v[1]);
+		$ret = $v[1];
 	}
 }
 

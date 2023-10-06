@@ -1,24 +1,15 @@
-FsApi Extension:
+completely overhauled for compatibility with MW 1.32.x
 
-FsApiExtension.php - The file used to integrate with a running
-medaiwiki environment
+All this extension needs to do is take in a "Unit Number" parameter
 
-FsApiExtension.i18n.php - Language specific information for the
-extension
+Parse through the content from
+https://www.familysearch.org/wiki/en/api.php?action=query&pageids=137044&prop=revisions&rvprop=content&format=xml
 
-FsApi - An object to compose the various api datasources
+And return the URL associated with the Unit Number.  Note, you don't actually have to use and parse XML. It's probably easier to parse the JSON.
 
-MwApi - An interface into the mediawiki datasource
+This should all be done at an endpoint similar to
+https://www.familysearch.org/wiki/en/extensions/FsApi/FsApiExtension.php?action=unitNbrToFhcWikiPage&unitNbr=3331776 to maintain backwards compatibility (until clients can change their code).
 
-FsApi Extension:
+Results should be returned as XML (optionally add json return format for future compatibility)
 
-FsApiExtension.php - The file used to integrate with a running
-medaiwiki environment
-
-FsApiExtension.i18n.php - Language specific information for the
-extension
-
-FsApi - An object to compose the various api datasources
-
-MwApi - An interface into the mediawiki datasource
-
+index.php provides all the functionality required.
